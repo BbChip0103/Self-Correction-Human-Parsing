@@ -12,24 +12,24 @@ pip install schp
 
 ## Usage
 ```python
-    image_path = 'IMAGE.png'
-    dataset_type = "lip" ### lip, atr, pascal
-    model_dir = 'CHECKPOINT_DIR'
+image_path = 'IMAGE.png'
+dataset_type = "lip" ### lip, atr, pascal
+model_dir = 'CHECKPOINT_DIR'
 
-    images = [
-        cv2.imread(image_path, cv2.IMREAD_COLOR),
-        cv2.imread(image_path, cv2.IMREAD_COLOR),
-    ]
-    images = np.stack(images)
+images = [
+    cv2.imread(image_path, cv2.IMREAD_COLOR),
+    cv2.imread(image_path, cv2.IMREAD_COLOR),
+]
+images = np.stack(images)
 
-    schp_model = schp.SCHP(dataset_type, model_dir)
-    
-    human_parsing_results = schp_model.parse(
-        images=images, 
-    )
-    print(human_parsing_results.shape)
+schp_model = schp.SCHP(dataset_type, model_dir)
 
-    label = schp_model.get_label()
-    print(label)
+human_parsing_results = schp_model.parse(
+    images=images, 
+)
+print(human_parsing_results.shape)
+
+label = schp_model.get_label()
+print(label)
 
 ```
