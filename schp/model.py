@@ -24,9 +24,9 @@ from collections import OrderedDict
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 
-import networks
-from utils.transforms import get_affine_transform, transform_logits
-from datasets.simple_extractor_dataset import SimpleImagelistDataset
+from .networks import init_model
+from .utils.transforms import get_affine_transform, transform_logits
+from .datasets.simple_extractor_dataset import SimpleImagelistDataset
 
 dataset_settings = {
     'lip': {
@@ -60,7 +60,7 @@ class SCHP:
     def init_model(self):
         num_classes = dataset_settings[self.dataset_type]['num_classes']
 
-        self.model = networks.init_model('resnet101', num_classes=num_classes, pretrained=None)
+        self.model = init_model('resnet101', num_classes=num_classes, pretrained=None)
 
         if self.dataset_type == 'lip':
             url = 'https://drive.google.com/uc?id=1k4dllHpu0bdx38J7H28rVVLpU-kOHmnH'

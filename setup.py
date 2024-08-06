@@ -15,7 +15,7 @@ install_requires = [
 setup(
     name='schp', 
     version='0.1',
-    packages=find_packages(include=['schp', 'schp.*']),
+    packages=find_packages(),
     install_requires=install_requires,
     entry_points={
         'console_scripts': [
@@ -23,7 +23,7 @@ setup(
     },
     author='BbChip0103',
     author_email='bbchip13@gmail.com',
-    description='Make clothes segmentation image by SCHP',
+    description='Package of Self Correction for Human Parsing'
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/BbChip0103/Self-Correction-Human-Parsing',
@@ -33,4 +33,5 @@ setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',
+    keywords="human, parser, clothes, segmentation",
 )
