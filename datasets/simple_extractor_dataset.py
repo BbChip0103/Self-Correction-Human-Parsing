@@ -76,3 +76,42 @@ class SimpleFolderDataset(data.Dataset):
         }
 
         return input, meta
+
+
+class SimpleImagelistDataset(SimpleFolderDataset):
+    def __init__(self, image_list, input_size=[512, 512], transform=None):
+        self.image_list = image_list
+        self.input_size = input_size
+        self.transform = transform
+        self.aspect_ratio = input_size[1] * 1.0 / input_size[0]
+        self.input_size = np.asarray(input_size)
+
+    def __len__(self):
+        return len(self.image_list)
+
+    def __getitem__(self, index):
+        img = self.image_list[index]
+        h, w, _ = img.shape
+
+        # Get person center and scale
+        person_center, s = self._box2cs([0, 0, w - 1, h - 1])
+        r = 0
+        trans = get_affine_transform(person_center, s, r, self.input_size)
+        input_ = cv2.warpAffine(
+            img,
+            trans,
+            (int(self.input_size[1]), int(self.input_size[0])),
+            flags=cv2.INTER_LINEAR,
+            borderMode=cv2.BORDER_CONSTANT,
+            borderValue=(0, 0, 0))
+
+        input_ = self.transform(input_)
+        meta = {
+            'center': person_center,
+            'height': h,
+            'width': w,
+            'scale': s,
+            'rotation': r
+        }
+
+        return input_, meta
