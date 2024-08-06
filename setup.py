@@ -23,7 +23,7 @@ setup(
     },
     author='BbChip0103',
     author_email='bbchip13@gmail.com',
-    description='Package of Self Correction for Human Parsing'
+    description='Package of Self Correction for Human Parsing',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/BbChip0103/Self-Correction-Human-Parsing',
