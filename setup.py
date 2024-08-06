@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages, Extension
 from setuptools.command.build_ext import build_ext
-import os
+import os, subprocess
 
 class CMakeBuildExt(build_ext):
     def build_extensions(self):
