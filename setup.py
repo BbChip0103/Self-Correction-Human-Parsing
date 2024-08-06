@@ -19,13 +19,14 @@ class CMakeBuildExt(build_ext):
         build_args = []
 
         os.makedirs(self.build_temp, exist_ok=True)
-        subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp)
+        subprocess.check_call(['cmake', ext.sources] + cmake_args, cwd=self.build_temp)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
 extensions = [
     Extension(
         'schp.modules.src',
         sources=[
+            'schp/modules/src/inplace_abn.cpp',
             'schp/modules/src/inplace_abn_cpu.cpp',
             'schp/modules/src/inplace_abn_cuda.cu',
             'schp/modules/src/inplace_abn_cuda_half.cu',
