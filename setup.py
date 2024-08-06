@@ -15,7 +15,7 @@ install_requires = [
 setup(
     name='schp', 
     version='0.1',
-    packages=find_packages(),
+    packages=find_packages(include=['schp', 'schp.*']),
     install_requires=install_requires,
     entry_points={
         'console_scripts': [
